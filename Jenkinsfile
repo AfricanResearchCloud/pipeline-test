@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     parameters {
         string(name: 'Username', description: 'Openstack Username')
         password(name: 'Password', description: 'Openstack Password')
