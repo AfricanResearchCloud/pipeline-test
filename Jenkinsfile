@@ -1,10 +1,6 @@
 pipeline {
     agent any
-    def userInput = input(
-      id: 'userInput', message: 'Openstack Credentials', parameters: [
-      [$class: 'TextParameterDefinition', description: 'Username', name: 'username'],
-      [$class: 'PasswordParameterDefinition', description: 'Password', name: 'password']
-    ])
+
     environment {
         OS_AUTH_URL = 'https://keystone.arc.ac.za:5000/v3'
         OS_PROJECT_ID = 'd31af4f236d940c0a2a627c7a8c14595'
@@ -16,6 +12,11 @@ pipeline {
     stages{
       stage('Transfer'){
        steps {
+         def userInput = input(
+           id: 'userInput', message: 'Openstack Credentials', parameters: [
+           [$class: 'TextParameterDefinition', description: 'Username', name: 'username'],
+           [$class: 'PasswordParameterDefinition', description: 'Password', name: 'password']
+         ])
         sh 'workon openstack && openstack server list'
        }
       }
