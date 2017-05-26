@@ -15,7 +15,7 @@ pipeline {
     stages{
       stage('Transfer'){
        steps {
-        sh 'openstack server list'
+        sh 'workon openstack && openstack server list'
        }
       }
     }
